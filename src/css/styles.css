@@ -1,0 +1,85 @@
+/* Tailwind Core */
+@import 'tailwindcss';
+
+/* ReUI Configs */
+@import './config.reui.css';
+
+/* Rebond Grotesque Font */
+@font-face {
+  font-family: 'Rebond Grotesque';
+  src: url('/media/fonts/ESRebondGrotesqueTRIAL-Regular-BF66189040b697b.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Rebond Grotesque';
+  src: url('/media/fonts/ESRebondGrotesqueTRIAL-Bold-BF66189040400df.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+.font-rebond {
+  font-family: 'Rebond Grotesque', sans-serif;
+}
+@font-face {
+  font-family: 'Rebond Grotesque';
+  src: url('https://your-font-url.com/RebondGrotesque.woff2') format('woff2'),
+       url('https://your-font-url.com/RebondGrotesque.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-rebond {
+  font-family: 'Rebond Grotesque', sans-serif;
+}
+
+/** Global Styles **/
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  *:focus-visible {
+    @apply outline-ring rounded-xs shadow-none outline-2 outline-offset-3 transition-none!;
+  }
+  
+}
+
+/* Metronic Components  */
+@import './components/image-input.css';
+@import './components/apexcharts.css';
+@import './components/leaflet.css';
+@import './components/rating.css';
+@import './components/image-input.css';
+@import './components/scrollable.css';
+
+/* Demos */
+@import './demos/demo1.css';
+
+/** Dark/Light Theme Variant **/
+@custom-variant dark (&:is(.dark *));
+@custom-variant light (&:not(.dark *));
+
+/* Font Faces */
+@font-face {
+  font-family: 'Rebond Grotesque';
+  src: url('/media/fonts/ESRebondGrotesqueTRIAL-Regular-BF66189040b697b.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Rebond Grotesque';
+  src: url('/media/fonts/ESRebondGrotesqueTRIAL-Bold-BF66189040400df.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+.font-rebond {
+  font-family: 'Rebond Grotesque', sans-serif;
+}
+
+body {
+  font-family: 'Rebond Grotesque', sans-serif;
+}

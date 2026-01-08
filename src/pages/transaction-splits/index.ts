@@ -1,0 +1,1 @@
+export { TransactionSplitsPage } from './transaction-splits-page';

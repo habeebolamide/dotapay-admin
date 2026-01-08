@@ -9,19 +9,14 @@ const PaymentTypeChart = () => {
   const paymentTypes: string[] = ['Card', 'Transfer', 'USSD', 'Wallet'];
 
   const chartData = useMemo(() => {
-    return [500000, 200000, 150000, 100000]; 
-  }, []);
-
-  const yearOptions = useMemo(() => {
-    const current = new Date().getFullYear();
-    return [current - 1, current, current + 1].map((y) => y.toString());
+    return [500000, 200000, 150000, 100000];
   }, []);
 
   const options: ApexOptions = {
     series: chartData ?? [],
     chart: {
-      height: 400,  // Increased pie size
-      width: '100%', // Optionally set width to 100% of its container
+      height: 300,
+      width: '100%',
       type: 'pie',
       toolbar: {
         show: false,
@@ -31,12 +26,13 @@ const PaymentTypeChart = () => {
     legend: {
       show: true,
       position: 'bottom',
-      horizontalAlign: 'center',  // This makes the legend display horizontally
-      labels: {
-        colors: 'var(--color-secondary-foreground)', // Make sure this color is defined
-      },
+      horizontalAlign: 'center',
+      floating: false,
       itemMargin: {
-        horizontal: 10, 
+        horizontal: 10,
+      },
+      labels: {
+        colors: 'var(--color-secondary-foreground)',
       },
     },
     tooltip: {
@@ -66,36 +62,33 @@ const PaymentTypeChart = () => {
   };
 
   return (
-    <Card className="h-full">
-      <CardHeader>
-        <div className="flex w-full items-center justify-between">
-          <CardTitle>Payment Method</CardTitle>
-          {/* <div className="flex items-center gap-2">
-            <Select value={year} onValueChange={setYear}>
-              <SelectTrigger className="w-32">
-                <SelectValue placeholder="Year" />
-              </SelectTrigger>
-              <SelectContent>
-                {yearOptions.map((option) => (
-                  <SelectItem key={option} value={option}>
-                    {option}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div> */}
-        </div>
-      </CardHeader>
-      <CardContent className="flex flex-col justify-end items-stretch grow px-3 py-1">
-        <ApexChart
-          id="revenue_chart"
-          options={options}
-          series={options.series}
-          type="pie"
-          height="400" 
-        />
-      </CardContent>
-    </Card>
+    <>
+      <style>{`
+        .apexcharts-legend {
+          display: flex !important;
+          flex-direction: row !important;
+          justify-content: center !important;
+          align-items: center !important;
+        }
+      `}</style>
+
+      <Card className="h-full">
+        <CardHeader>
+          <div className="flex w-full items-center justify-between">
+            <CardTitle>Payment Method</CardTitle>
+          </div>
+        </CardHeader>
+        <CardContent className="flex flex-col justify-end items-stretch grow px-3 py-1">
+          <ApexChart
+            id="revenue_chart"
+            options={options}
+            series={options.series}
+            type="pie"
+            height="300"
+          />
+        </CardContent>
+      </Card>
+    </>
   );
 };
 

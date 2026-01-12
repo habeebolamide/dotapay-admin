@@ -8,11 +8,13 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
+import { useState } from "react";
 
 export function TransactionVolumeChart() {
 
     const dates = transactionVolumeData.map((data) => data.date);
     const transactions = transactionVolumeData.map((data) => data.transactions);
+    const [timeframe, setTimeframe] = useState("monthly");
 
     const chartOptions: ApexCharts.ApexOptions = {
         chart: {
@@ -71,9 +73,9 @@ export function TransactionVolumeChart() {
                 <div className="flex w-full items-center justify-between">
                     <CardTitle>Transaction Volume</CardTitle>
                     <div className="flex items-center gap-2">
-                        <Select >
+                        <Select value={timeframe} onValueChange={setTimeframe} >
                             <SelectTrigger className="w-32">
-                                <SelectValue placeholder="Year" />
+                                <SelectValue placeholder="Monthly" />
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectItem value={'hourly'}>

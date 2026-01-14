@@ -25,13 +25,12 @@ export class AdminStatsService {
     return response.data;
   }
 
-  // async getTopCustomers(params?: PaginationParams): Promise<PaginatedResponse<any>> {
-  //   const response = await apiClient.get<PaginatedResponse<any>>(
-  //     `${this.endpoint}/top-customers`,
-  //     { params }
-  //   );
-  //   return response.data;
-  // }
+  async getTopCustomers(): Promise<any> {
+    const response = await apiClient.get<PaginatedResponse<any>>(
+      `${this.endpoint}/top-customers`,
+    );
+    return response.data;
+  }
 
   async getTransactionVolume(params?: { period?: string }): Promise<any> {
     const response = await apiClient.get<ApiSuccessResponse<any>>(

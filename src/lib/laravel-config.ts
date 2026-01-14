@@ -84,7 +84,7 @@ export const API_ENDPOINTS = {
 
   DASHBOARD: {
     STATISTICS: '/dashboard/statistics',
-    REVENUE_CHART: '/dashboard/revenue-chart',
+    REVENUE_CHART: '/admin-stats/revenue-chart',
     WALLET_CHART: '/dashboard/wallet-chart',
   },
 

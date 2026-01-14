@@ -105,20 +105,23 @@ export function TransactionStatusChart() {
                         <p className="text-destructive">Failed to load chart data</p>
                     </div>
                 ) : (
-                    <div className="flex items-center gap-8">
-                        <div className="relative w-[180px] h-[180px]">
-                            <Chart
-                                options={chartOptions}
-                                series={chartData?.series}
-                                type="donut"
-                                width="100%"
-                                height="100%"
-                            />
-                            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                                <span className="text-2xl font-mono font-bold text-green-500">
-                                    {chartData?.successRate}%
-                                </span>
-                                <span className="text-xs text-muted-foreground">Success</span>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-8">
+
+                        <div className="flex w-full justify-center lg:justify-start">
+                            <div className="relative w-[180px] h-[180px]">
+                                <Chart
+                                    options={chartOptions}
+                                    series={chartData?.series}
+                                    type="donut"
+                                    width="100%"
+                                    height="100%"
+                                />
+                                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                                    <span className="text-2xl font-mono font-bold text-green-500">
+                                        {chartData?.successRate}%
+                                    </span>
+                                    <span className="text-xs text-muted-foreground">Success</span>
+                                </div>
                             </div>
                         </div>
 
@@ -149,6 +152,7 @@ export function TransactionStatusChart() {
                                 );
                             })}
                         </div>
+
                     </div>
                 )}
 

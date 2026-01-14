@@ -71,7 +71,7 @@ import {
 import { type MenuConfig } from './types';
 
 export const MENU_SIDEBAR: MenuConfig = [
-  { title: 'Dashboard', path: '/', icon: LayoutGrid, permission: 'tenant.dashboard.statistics' },
+  // { title: 'Dashboard', path: '/', icon: LayoutGrid, permission: 'tenant.dashboard.statistics' },
   { title: 'Analytics', path: '/payment-analytics', icon: BarChart },
   // { heading: 'Payments' },
   // { title: 'Transactions', path: '/transactions', icon: CreditCard, permission: 'tenant.payment.list' },

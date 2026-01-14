@@ -1,12 +1,52 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { customerBehaviorData } from "../data/mockData";
+import { notify } from "@/lib/notifications";
+import { adminStatsService } from "@/services/admin-stats.service";
+import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 
 export function CustomerBehaviorChart() {
 
-    const dates = customerBehaviorData.map((data) => data.date);
-    const newCustomers = customerBehaviorData.map((data) => data.newCustomers);
-    const returningCustomers = customerBehaviorData.map((data) => data.returningCustomers);
+    const [chartData, setChartData] = useState<any | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<Error | null>(null);
+
+
+    // Prepare data for ApexCharts
+
+    const fetchChartData = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await adminStatsService.WeeklyCustomerActivities();
+
+            const newCustomersData = response.data.new_customers;
+            const returningCustomersData = response.data.returning_customers;
+
+            const newCustomers = Object.values(newCustomersData);
+            const returningCustomers = Object.values(returningCustomersData);
+            const daysOfWeek = Object.keys(newCustomersData);
+
+            setChartData({
+                newCustomers,
+                returningCustomers,
+                daysOfWeek,
+            });
+
+            // console.log(response, "Data");
+
+
+        } catch (err) {
+            console.warn(err, "Error");
+            setError(err as Error);
+            notify.error('Failed to fetch chart data');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchChartData();
+    }, []);
 
     const chartOptions: ApexCharts.ApexOptions = {
         chart: {
@@ -27,7 +67,7 @@ export function CustomerBehaviorChart() {
             enabled: false,
         },
         xaxis: {
-            categories: dates,
+            categories: chartData?.daysOfWeek || [],
             labels: {
                 style: {
                     colors: '#FFFFFF', 
@@ -55,21 +95,27 @@ export function CustomerBehaviorChart() {
     const series = [
         {
             name: 'New Customers',
-            data: newCustomers,
+           data: chartData?.newCustomers || [],
         },
         {
             name: 'Returning Customers',
-            data: returningCustomers,
+            data: chartData?.returningCustomers || [],
         },
     ];
 
     return (
         <Card>
             <CardHeader>
-                Customer Activity
+                Weekly Customer Activity
             </CardHeader>
             <CardContent>
-                <Chart options={chartOptions} series={series} type="bar" height={400} />
+                {loading ? (
+                    <p>Loading...</p>
+                ) : error ? (
+                    <p>Error loading data</p>
+                ) : (
+                    <Chart options={chartOptions} series={series} type="bar" height={400} />
+                )}
             </CardContent>
         </Card>
     );

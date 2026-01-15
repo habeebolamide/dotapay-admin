@@ -72,14 +72,18 @@ export function TransactionVolumeChart() {
                 style: {
                     colors: '#FFFFFF',
                     fontSize: '12px'
-                }
+                },
+                rotate: -45, 
+                rotateAlways: true,
+                hideOverlappingLabels: false, // Disables the auto-hiding logic
+                trim: false,
             },
             axisBorder: {
                 show: false
             },
             axisTicks: {
                 show: false
-            }
+            },
         },
         yaxis: {
             title: {

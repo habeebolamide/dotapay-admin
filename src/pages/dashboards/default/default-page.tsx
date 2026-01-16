@@ -6,8 +6,11 @@ import {
   Demo4Page,
   Demo5Page,
 } from '../';
+import { PaymentAnalyticsDashboard } from '@/pages/analytics-dashboard/payment-analytics-dashboard';
 
 const DefaultPage = () => {
+
+  return <PaymentAnalyticsDashboard />;
   const { settings } = useSettings();
 
   if (settings?.layout === 'demo1') {

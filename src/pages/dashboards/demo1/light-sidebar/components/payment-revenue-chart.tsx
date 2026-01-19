@@ -12,14 +12,21 @@ import {
 import { useRevenueChart } from '@/hooks/use-dashboard';
 
 const PaymentRevenueChart = () => {
+  const [period, setPeriod] = useState<'daily' | 'weekly' | 'monthly' | 'yearly'>('monthly');
+
   const thisYear = new Date().getFullYear().toString();
   const [year, setYear] = useState<string>(thisYear);
   const { data: chartResponse, isLoading } = useRevenueChart({ year });
 
   const chartData = chartResponse;
 
-  console.log(chartData,"Chatrtyukjnbg");
-  
+  const periodOptions: Array<{ value: 'daily' | 'weekly' | 'monthly' | 'yearly'; label: string }> = [
+    { value: 'daily', label: 'Daily' },
+    { value: 'weekly', label: 'Weekly' },
+    { value: 'monthly', label: 'Monthly' },
+    { value: 'yearly', label: 'Yearly' },
+  ];
+
 
 
   const yearOptions = useMemo(() => {
@@ -171,6 +178,18 @@ const PaymentRevenueChart = () => {
                 {yearOptions.map((option) => (
                   <SelectItem key={option} value={option}>
                     {option}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Select value={period} onValueChange={(value) => setPeriod(value as typeof period)}>
+              <SelectTrigger className="w-32">
+                <SelectValue placeholder="Period" />
+              </SelectTrigger>
+              <SelectContent>
+                {periodOptions.map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
                   </SelectItem>
                 ))}
               </SelectContent>

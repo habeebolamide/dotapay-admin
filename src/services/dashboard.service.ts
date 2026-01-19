@@ -19,9 +19,9 @@ export interface WalletChartSeries {
 
 export interface WalletChartData {
   period: 'daily' | 'weekly' | 'monthly' | 'yearly';
-  start: string;
-  end: string;
-  series: WalletChartSeries[];
+  month: string;
+  year: string;
+  data: Record<string, number>;
 }
 
 class DashboardService {

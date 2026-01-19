@@ -83,9 +83,9 @@ export const API_ENDPOINTS = {
   },
 
   DASHBOARD: {
-    STATISTICS: '/dashboard/statistics',
+    STATISTICS: '/admin-stats/dashboard',
     REVENUE_CHART: '/admin-stats/revenue-chart',
-    WALLET_CHART: '/dashboard/wallet-chart',
+    WALLET_CHART: '/admin-stats/wallet-revenue-chart',
   },
 
   // RBAC endpoints

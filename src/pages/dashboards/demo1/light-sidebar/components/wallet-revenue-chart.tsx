@@ -16,11 +16,13 @@ const WalletRevenueChart = () => {
   const { data: chartResponse, isLoading } = useWalletChart({ period });
 
   const categories = useMemo(() => {
-    return chartResponse?.series.map((item) => item.label) || [];
+    
+    return Object.keys(chartResponse?.data || {});
   }, [chartResponse]);
 
   const chartData = useMemo(() => {
-    return chartResponse?.series.map((item) => item.total) || [];
+    
+    return Object.values(chartResponse?.data || {});
   }, [chartResponse]);
 
   const periodOptions: Array<{ value: 'daily' | 'weekly' | 'monthly' | 'yearly'; label: string }> = [
@@ -163,7 +165,7 @@ const WalletRevenueChart = () => {
   return (
     <Card className="h-full">
       <CardHeader>
-        <div className="flex items-center justify-between">
+        <div className="flex w-full items-center justify-between">
           <CardTitle>Wallet Revenue Chart</CardTitle>
           <div className="flex items-center gap-2">
             <Select value={period} onValueChange={(value) => setPeriod(value as typeof period)}>

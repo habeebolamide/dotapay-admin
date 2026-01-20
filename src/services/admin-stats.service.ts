@@ -4,9 +4,10 @@ import { ApiSuccessResponse, PaginatedResponse, PaginationParams } from '@/types
 export class AdminStatsService {
   private endpoint = 'admin-stats';
 
-  async getAnalyticsStats(): Promise<any> {
+  async getAnalyticsStats(params?: { start_date?: string; end_date?: string }): Promise<any> {
     const response = await apiClient.get<ApiSuccessResponse<any>>(
-      `${this.endpoint}/analytics`
+      `${this.endpoint}/analytics`,
+      params 
     );
     return response.data;
   }
@@ -35,7 +36,7 @@ export class AdminStatsService {
   async getTransactionVolume(params?: { period?: string }): Promise<any> {
     const response = await apiClient.get<ApiSuccessResponse<any>>(
       `${this.endpoint}/transaction-volume-chart`,
-      params  
+      params
     );
     return response.data;
   }

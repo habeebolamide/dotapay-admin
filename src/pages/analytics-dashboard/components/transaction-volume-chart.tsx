@@ -131,6 +131,9 @@ export function TransactionVolumeChart() {
                                 <SelectItem value={'monthly'}>
                                     Monthly
                                 </SelectItem>
+                                <SelectItem value={'yearly'}>
+                                    Yearly
+                                </SelectItem>
                             </SelectContent>
                         </Select>
                     </div>

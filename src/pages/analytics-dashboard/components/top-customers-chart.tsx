@@ -37,7 +37,7 @@ export function TopCustomersChart() {
         } catch (err) {
             console.warn(err, "Error");
             setError(err as Error);
-            notify.error('Failed to fetch chart data');
+            notify.error('Failed to fetch top customers data');
         } finally {
             setLoading(false);
         }

@@ -241,16 +241,15 @@ export function PaymentAnalyticsDashboard() {
 
             <Container>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-3">
+                    <CustomerBehaviorChart />
+                    <TopCustomersChart />
+                </div>
+            </Container>
+            <Container>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-3">
                     <TransactionStatusChart />
                     <PaymentTypeChart />
                     {/* <ChannelBreakdown /> */}
-                </div>
-            </Container>
-
-            <Container>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-3">
-                    <CustomerBehaviorChart />
-                    <TopCustomersChart />
                 </div>
             </Container>
 
